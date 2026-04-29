@@ -1,0 +1,58 @@
+---
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+  theme?: 'light' | 'green';
+  iconName: string;
+  title: string;
+  description: string;
+  listItems?: string[];
+  buttonText: string;
+  href?: string; 
+}
+
+const {
+  theme = 'light',
+  iconName,
+  title,
+  description,
+  listItems = [],
+  buttonText,
+  href = "#" 
+} = Astro.props;
+
+const isLight = theme === 'light';
+
+const cardBg = isLight ? 'bg-white border-gray-100' : 'bg-[#F5F8F2] border-green-100/50';
+const iconBg = isLight ? 'bg-[#FDE29F]/40 text-yellow-700' : 'bg-lastbite-green/10 text-lastbite-green';
+const checkColor = isLight ? 'text-lastbite-orange' : 'text-lastbite-green';
+const btnClass = isLight ? 'bg-[#2B3019] hover:bg-black text-white' : 'bg-lastbite-green hover:bg-green-700 text-white';
+const descColor = isLight ? 'text-gray-500' : 'text-yellow-800 font-medium';
+---
+
+<div class={`rounded-[2rem] p-8 shadow-sm border flex flex-col h-full relative overflow-hidden ${cardBg}`}>
+  <div class={`w-14 h-14 rounded-2xl flex items-center justify-center mb-6 ${iconBg}`}>
+    <Icon name={iconName} class="w-7 h-7" />
+  </div>
+  
+  <h3 class="font-heading text-2xl font-bold text-gray-900 mb-3 pr-4">{title}</h3>
+  
+  <p class={`font-body text-sm leading-relaxed mb-8 ${descColor}`}>
+    {description}
+  </p>
+  
+  <ul class="space-y-4 mb-10 flex-1">
+    {listItems.map((item) => (
+      <li class="flex gap-3 font-body text-sm font-medium text-gray-800">
+        <Icon name="solar:check-circle-linear" class={`w-5 h-5 flex-shrink-0 ${checkColor}`} />
+        <span set:html={item}></span>
+      </li>
+    ))}
+  </ul>
+  <a 
+    href={href} 
+    class={`font-medium py-3.5 rounded-2xl w-full transition-colors inline-block text-center ${btnClass}`}
+  >
+    {buttonText}
+  </a>
+</div>

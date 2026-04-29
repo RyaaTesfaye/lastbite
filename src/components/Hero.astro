@@ -1,0 +1,66 @@
+---
+import { Icon } from 'astro-icon/components';
+---
+<section class="max-w-md md:max-w-6xl mx-auto px-6 py-8 flex flex-col md:flex-row items-center gap-12">
+  <div class="flex-1 space-y-5">
+    <div class="inline-flex items-center gap-2 bg-[#FDE29F] text-yellow-900 text-xs font-semibold px-4 py-2 rounded-full">
+      <Icon name="solar:map-point-bold" class="w-4 h-4" />
+      Hadir di Area Jember
+    </div>
+    
+    <h1 class="font-heading text-5xl md:text-6xl font-bold leading-[1.1] text-gray-900">
+      Rescue goods.<br/>
+      <span class="text-lastbite-orange">Snag deals.</span><br/>
+      <span class="text-lastbite-green">Save the planet.</span>
+    </h1>
+    
+    <p class="text-gray-600 font-body text-sm leading-relaxed max-w-md">
+      LastBite menghubungkanmu dengan bisnis lokal di Jember yang menawarkan makanan surplus dan barang preloved berkualitas dengan harga miring. Baik untuk dompetmu, Baik untuk bumi kita. 🌱
+    </p>
+
+    <div class="flex flex-col sm:flex-row gap-3 pt-4">
+      <button class="bg-lastbite-green text-white font-medium px-6 py-3.5 rounded-2xl flex justify-center items-center gap-2 w-full sm:w-auto">
+        <Icon name="solar:smartphone-bold" class="w-5 h-5" />
+        Bergabung
+      </button>
+      <button class="bg-white border-2 border-gray-100 text-gray-800 font-medium px-6 py-3.5 rounded-2xl flex justify-center items-center gap-2 w-full sm:w-auto shadow-sm">
+        <Icon name="solar:shop-bold" class="w-5 h-5" />
+        Jadi Mitra
+      </button>
+    </div>
+  </div>
+
+  <div class="flex-1 w-full">
+    <div class="bg-lastbite-orange rounded-[2.5rem] p-6 pb-8 relative shadow-lg w-full max-w-sm mx-auto md:max-w-none">
+      <div class="absolute -top-4 right-4 md:top-4 md:-right-6 bg-white rounded-2xl px-3 py-2 flex items-center gap-3 shadow-md z-10 border border-gray-100">
+        <div class="bg-[#FDE29F] text-yellow-800 rounded-full w-9 h-9 flex items-center justify-center font-bold text-sm">%</div>
+        <div class="pr-2">
+          <p class="text-[10px] text-gray-400 font-semibold mb-0.5">Hemat Hari Ini</p>
+          <p class="font-bold text-gray-900 text-sm leading-none">Rp 125.000</p>
+        </div>
+      </div>
+      
+      <div class="flex gap-3 mt-8 mb-6 justify-center">
+        <div class="w-1/3 aspect-[3/4] bg-white/20 rounded-[1.5rem] overflow-hidden border-[3px] border-white/30 shadow-inner">
+           <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&q=80" class="w-full h-full object-cover" alt="Food 1" />
+        </div>
+        <div class="w-1/3 aspect-[3/4] bg-white/20 rounded-[1.5rem] overflow-hidden border-[3px] border-white/30 shadow-inner">
+           <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&q=80" class="w-full h-full object-cover" alt="Food 2" />
+        </div>
+        <div class="w-1/3 aspect-[3/4] bg-white/20 rounded-[1.5rem] overflow-hidden border-[3px] border-white/30 shadow-inner">
+           <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=400&q=80" class="w-full h-full object-cover" alt="Food 3" />
+        </div>
+      </div>
+
+      <div class="absolute -bottom-5 left-1/2 -translate-x-1/2 bg-white rounded-full p-1.5 flex items-center gap-3 pr-5 shadow-lg border border-gray-50 w-max">
+        <div class="bg-lastbite-orange text-white w-9 h-9 rounded-full flex items-center justify-center">
+          <Icon name="solar:shop-2-bold" class="w-5 h-5" />
+        </div>
+        <div>
+          <p class="text-[10px] text-gray-400 font-medium mb-0.5">Dapur LastBite</p>
+          <p class="font-bold text-gray-900 text-xs leading-none">Sisa 3 Porsi!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

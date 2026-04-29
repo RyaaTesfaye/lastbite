@@ -1,0 +1,50 @@
+---
+import FeatureCard from './FeatureCard.astro';
+
+const listBelanja = [
+  "Diskon hingga 70% setiap hari",
+  "Makanan dan barang <i class='font-normal'>preloved</i> yang berkualitas",
+  "Berkontribusi mengurangi limbah dan <i class='font-normal'>food waste</i>"
+];
+
+const listPenjual = [
+  "Kurangi kerugian dan pertahankan nilai jual",
+  "Jangkau pelanggan baru yang peduli lingkungan"
+];
+---
+
+<div class="bg-[#F7FBF7] pt-10 pb-20">
+  <section class="max-w-md md:max-w-6xl mx-auto px-6">
+    <div class="mb-10 md:mb-14 max-w-xl">
+      <h2 class="font-heading text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-4">
+        Satu Platform,<br/>
+        <span class="text-lastbite-green">Dua</span> Cara untuk Untung.
+      </h2>
+      <p class="text-gray-600 font-body text-sm md:text-base leading-relaxed">
+        Baik ingin belanja lebih hemat atau meningkatkan potensi stok berlebih, <span class="font-semibold text-gray-900">LastBite</span> mempertemukan komunitas untuk ekonomi yang lebih cerdas dan lebih peduli lingkungan.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <FeatureCard 
+        theme="light"
+        iconName="solar:bag-3-bold"
+        title="Belanja Cerdas"
+        description="Temukan makanan, elektronik, hingga produk kecantikan di sekitarmu dengan harga jauh lebih ramah di kantong. Kualitas tetap oke, dengan harga lebih terjangkau."
+        listItems={listBelanja}
+        buttonText="Mulai Belanja"
+        href="#" 
+      />
+
+      <FeatureCard 
+        theme="green"
+        iconName="solar:shop-bold"
+        title="Pemilik Usaha & Penjual Individual"
+        description="Jangan biarkan stok berlebih jadi rugi! Jual surplus food, barang preloved, dan produk berlebih ke audiens lokal yang siap beli dalam hitungan menit!"
+        listItems={listPenjual}
+        buttonText="Jadi Penjual"
+        href="#" 
+      />
+    </div>
+  </section>
+</div>

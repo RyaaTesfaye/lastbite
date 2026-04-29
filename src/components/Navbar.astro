@@ -1,0 +1,148 @@
+---
+import { Icon } from 'astro-icon/components';
+
+const menuItems = [
+  {
+    id: "pengguna",
+    title: "Untuk Pengguna",
+    bold: "Pengguna",
+    links: [
+      { name: "Dapatkan Aplikasi", href: "#" },
+      { name: "Cari Diskon", href: "#" },
+      { name: "Cara Membeli", href: "#" },
+      { name: "Kebijakan Refund", href: "#" }
+    ]
+  },
+  {
+    id: "mitra",
+    title: "Untuk Mitra",
+    bold: "Mitra",
+    links: [
+      { name: "Jadi Penjual", href: "#" },
+      { name: "Panduan Penjual", href: "#" },
+      { name: "Cerita Sukses", href: "#" },
+      { name: "Login Mitra", href: "#" }
+    ]
+  },
+  {
+    id: "tentang",
+    title: "Tentang LastBite",
+    bold: "LastBite",
+    links: [
+      { name: "Tentang LastBite", href: "#" },
+      { name: "Hubungi Kami", href: "#" },
+      { name: "Kebijakan Privasi", href: "#" }
+    ]
+  }
+];
+---
+
+<header class="relative z-50">
+  <nav class="flex items-center justify-between py-6 px-6 max-w-md md:max-w-6xl mx-auto">
+    <a href="/" class="flex items-center gap-2 relative z-50 hover:opacity-80 transition-opacity">
+      <div class="w-10 h-10 bg-lastbite-green rounded-full flex items-center justify-center text-white shadow-md">
+        <Icon name="solar:leaf-bold" class="w-6 h-6" />
+      </div>
+      <span class="font-heading font-bold text-3xl tracking-tight text-gray-900">LastBite</span>
+    </a>
+
+    <button id="hamburger-btn" class="md:hidden relative z-50 p-2 -mr-2 text-gray-900" aria-label="Buka Menu">
+      <Icon name="solar:hamburger-menu-linear" class="w-7 h-7" />
+    </button>
+
+    <div class="hidden md:flex items-center gap-8 font-body text-sm font-medium text-gray-800">
+      {menuItems.map(menu => (
+        <div class="relative group">
+          <button class="flex items-center gap-1.5 py-2 cursor-pointer hover:text-lastbite-green transition-colors">
+            {menu.title}
+            <Icon name="solar:alt-arrow-down-linear" class="w-4 h-4 transition-transform duration-200 group-hover:rotate-180" />
+          </button>
+
+          <div class="absolute top-full left-0 mt-2 w-48 bg-white rounded-2xl shadow-[0_10px_40px_-10px_rgba(0,0,0,0.1)] border border-gray-100 opacity-0 invisible translate-y-2 transition-all duration-200 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 flex flex-col overflow-hidden">
+            {menu.links.map(link => (
+              <a href={link.href} class="px-5 py-3 text-sm text-gray-600 hover:text-lastbite-green hover:bg-gray-50 transition-colors">
+                {link.name}
+              </a>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </nav>
+
+  <div id="mobile-overlay" class="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 opacity-0 invisible transition-all duration-300 md:hidden"></div>
+
+  <div
+    id="mobile-menu"
+    class="fixed top-4 left-4 right-4 bg-white rounded-[2rem] shadow-2xl z-50 px-6 py-2 transform -translate-y-[120%] transition-transform duration-300 md:hidden border border-gray-100 max-h-[85vh] overflow-y-auto"
+  >
+    <div class="flex flex-col">
+      {menuItems.map((menu, i) => (
+        <div class={i < menuItems.length - 1 ? "border-b border-gray-100" : ""}>
+          <button
+            class="mobile-accordion-btn w-full flex justify-between items-center py-4 font-body text-sm text-gray-800"
+            data-target={`mobile-dropdown-${menu.id}`}
+          >
+            <span>
+              {menu.title.replace(menu.bold, '')}
+              <strong>{menu.bold}</strong>
+            </span>
+            <Icon name="solar:alt-arrow-down-linear" class="w-5 h-5 transition-transform duration-200 chevron-icon text-gray-400 flex-shrink-0" />
+          </button>
+
+          <div id={`mobile-dropdown-${menu.id}`} class="hidden flex-col pb-4 gap-0.5">
+            {menu.links.map(link => (
+              <a href={link.href} class="py-2 text-sm text-gray-400 hover:text-lastbite-green transition-colors">
+                {link.name}
+              </a>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</header>
+
+<script>
+  const hamburgerBtn  = document.getElementById('hamburger-btn');
+  const mobileOverlay = document.getElementById('mobile-overlay');
+  const mobileMenu    = document.getElementById('mobile-menu');
+  const accordionBtns = document.querySelectorAll('.mobile-accordion-btn');
+
+  function openMobileMenu() {
+    mobileOverlay?.classList.remove('invisible', 'opacity-0');
+    mobileOverlay?.classList.add('visible', 'opacity-100');
+    mobileMenu?.classList.remove('-translate-y-[120%]');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMobileMenu() {
+    mobileOverlay?.classList.remove('visible', 'opacity-100');
+    mobileOverlay?.classList.add('invisible', 'opacity-0');
+    mobileMenu?.classList.add('-translate-y-[120%]');
+    document.body.style.overflow = '';
+  }
+
+  hamburgerBtn?.addEventListener('click', openMobileMenu);
+  mobileOverlay?.addEventListener('click', closeMobileMenu);
+
+  // Accordion Logic
+  accordionBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const targetId      = btn.getAttribute('data-target');
+      const targetContent = document.getElementById(targetId!);
+      const chevron       = btn.querySelector('.chevron-icon');
+      const isClosed      = targetContent?.classList.contains('hidden');
+
+      if (isClosed) {
+        targetContent?.classList.remove('hidden');
+        targetContent?.classList.add('flex');
+        chevron?.classList.add('-rotate-180');
+      } else {
+        targetContent?.classList.add('hidden');
+        targetContent?.classList.remove('flex');
+        chevron?.classList.remove('-rotate-180');
+      }
+    });
+  });
+</script>
