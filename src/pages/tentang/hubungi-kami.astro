@@ -1,0 +1,89 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import { Icon } from 'astro-icon/components';
+
+const channels = [
+  { icon: "solar:chat-round-dots-bold", color: "bg-green-500 text-white", title: "WhatsApp Support", desc: "Respons cepat dalam hitungan menit", detail: "+62 878-6330-6466", href: "https://wa.me/6287863306466", label: "Chat Sekarang" },
+  { icon: "solar:camera-minimalistic-bold", color: "bg-pink-500 text-white", title: "Instagram", desc: "DM kami di Instagram untuk pertanyaan umum", detail: "@by_lastbite", href: "https://instagram.com/by_lastbite", label: "Buka Instagram" },
+];
+
+const faqs = [
+  { q: "Jam operasional support LastBite?", a: "Tim support kami aktif setiap hari Senin–Minggu, pukul 08.00–21.00 WIB. Di luar jam tersebut, kamu tetap bisa mengirim pesan dan akan kami balas di jam operasional berikutnya." },
+  { q: "Saya ingin meliput LastBite untuk media, ke mana?", a: "Untuk keperluan press/media, silakan DM kami di Instagram @by_lastbite. Tim kami akan merespons dalam 1–3 hari kerja." },
+  { q: "Bagaimana cara melaporkan penjual yang curang?", a: "Gunakan fitur 'Laporkan' pada halaman toko atau produk di aplikasi, atau hubungi kami melalui WhatsApp dengan bukti screenshot." },
+];
+---
+
+<PageLayout title="Hubungi Kami" description="Ada pertanyaan? Tim LastBite siap membantu kamu setiap hari." breadcrumb="Hubungi Kami">
+  <!-- Hero -->
+  <section class="max-w-md md:max-w-6xl mx-auto px-6 py-12">
+    <div class="max-w-2xl">
+      <span class="inline-flex items-center gap-2 bg-lastbite-green/10 text-lastbite-green text-xs font-semibold px-4 py-2 rounded-full mb-4 font-body">
+        <Icon name="solar:headphones-round-bold" class="w-4 h-4" /> Support 7 Hari Seminggu
+      </span>
+      <h1 class="font-heading text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-4">
+        Ada yang Bisa Kami <span class="text-lastbite-green">Bantu?</span>
+      </h1>
+      <p class="font-body text-gray-500 text-base leading-relaxed">
+        Pilih saluran komunikasi yang paling nyaman buatmu. Tim LastBite siap membantu setiap hari pukul 08.00–21.00 WIB.
+      </p>
+    </div>
+  </section>
+
+  <!-- Contact Channels -->
+  <section class="max-w-md md:max-w-6xl mx-auto px-6 pb-16">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {channels.map(c => (
+        <div class="bg-white rounded-[2rem] p-8 border border-gray-100 shadow-sm flex flex-col gap-4 hover:shadow-md transition-shadow">
+          <div class={`w-14 h-14 rounded-2xl ${c.color} flex items-center justify-center`}>
+            <Icon name={c.icon} class="w-7 h-7" />
+          </div>
+          <div class="flex-1">
+            <h3 class="font-heading font-bold text-gray-900 mb-1">{c.title}</h3>
+            <p class="font-body text-sm text-gray-500 mb-2">{c.desc}</p>
+            <p class="font-body text-sm font-semibold text-gray-800">{c.detail}</p>
+          </div>
+          <a href={c.href} target="_blank" class="inline-flex items-center gap-2 bg-gray-900 text-white text-sm font-semibold px-5 py-3 rounded-xl hover:bg-gray-700 transition-colors">
+            {c.label}
+            <Icon name="solar:arrow-right-linear" class="w-4 h-4" />
+          </a>
+        </div>
+      ))}
+    </div>
+  </section>
+
+
+  <!-- FAQ -->
+  <section class="max-w-md md:max-w-3xl mx-auto px-6 py-16">
+    <h2 class="font-heading text-2xl font-bold text-gray-900 mb-7">Pertanyaan yang Sering Ditanyakan</h2>
+    <div class="space-y-4">
+      {faqs.map((faq, i) => (
+        <div class="faq-item bg-white rounded-2xl border border-gray-100 overflow-hidden">
+          <button class="faq-btn w-full flex justify-between items-center px-6 py-5 text-left font-body font-semibold text-gray-800 text-sm" data-index={i}>
+            {faq.q}
+            <Icon name="solar:alt-arrow-down-linear" class="w-5 h-5 text-gray-400 flex-shrink-0 ml-4 faq-chevron transition-transform duration-200" />
+          </button>
+          <div class="faq-answer hidden px-6 pb-5">
+            <p class="font-body text-sm text-gray-500 leading-relaxed">{faq.a}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+</PageLayout>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('.faq-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const answer  = btn.nextElementSibling as HTMLElement;
+      const chevron = btn.querySelector('.faq-chevron') as HTMLElement;
+      const isOpen  = !answer.classList.contains('hidden');
+      document.querySelectorAll('.faq-answer').forEach(a => a.classList.add('hidden'));
+      document.querySelectorAll('.faq-chevron').forEach(c => c.classList.remove('rotate-180'));
+      if (!isOpen) {
+        answer.classList.remove('hidden');
+        chevron.classList.add('rotate-180');
+      }
+    });
+  });
+</script>

@@ -1,0 +1,231 @@
+---
+import PageLayout from "../../layouts/PageLayout.astro";
+import { Icon } from "astro-icon/components";
+
+const topics = [
+  {
+    icon: "solar:box-bold",
+    title: "Mengelola Produk",
+    slug: "produk",
+    items: [
+      "Cara upload produk baru",
+      "Edit harga dan stok",
+      "Hapus atau nonaktifkan listing",
+      "Tips foto produk yang menarik",
+      "Atur kategori produk",
+    ],
+  },
+  {
+    icon: "solar:bag-check-bold",
+    title: "Mengelola Pesanan",
+    slug: "pesanan",
+    items: [
+      "Cara konfirmasi pesanan",
+      "Menolak pesanan",
+      "Tandai pesanan siap pickup",
+      "Riwayat pesanan",
+      "Menangani komplain pembeli",
+    ],
+  },
+  {
+    icon: "solar:dollar-bold",
+    title: "Keuangan & Pencairan",
+    slug: "keuangan",
+    items: [
+      "Cara cek saldo mitra",
+      "Proses pencairan dana",
+      "Biaya layanan LastBite",
+      "Riwayat transaksi",
+      "Invoice dan laporan",
+    ],
+  },
+  {
+    icon: "solar:chart-bold",
+    title: "Dashboard & Analitik",
+    slug: "analitik",
+    items: [
+      "Memahami dashboard mitra",
+      "Laporan penjualan harian/bulanan",
+      "Produk terlaris",
+      "Analisis jam ramai",
+      "Export data penjualan",
+    ],
+  },
+  {
+    icon: "solar:settings-bold",
+    title: "Pengaturan Toko",
+    slug: "pengaturan",
+    items: [
+      "Ubah info toko & foto",
+      "Atur jam operasional",
+      "Kelola metode pickup",
+      "Notifikasi & alert",
+      "Nonaktifkan toko sementara",
+    ],
+  },
+  {
+    icon: "solar:headphones-round-bold",
+    title: "Bantuan & Kontak",
+    slug: "bantuan",
+    items: [
+      "Hubungi support mitra",
+      "Laporkan masalah teknis",
+      "Kebijakan pelanggaran",
+      "Hapus akun mitra",
+    ],
+  },
+];
+
+const tips = [
+  {
+    icon: "solar:camera-bold",
+    tip: "Gunakan foto terang dengan latar bersih — produk dengan foto berkualitas terjual 3× lebih cepat.",
+  },
+  {
+    icon: "solar:tag-price-bold",
+    tip: "Tetapkan diskon minimal 50% untuk menarik minat pembeli dengan cepat.",
+  },
+  {
+    icon: "solar:clock-circle-bold",
+    tip: "Upload produk 1–2 jam sebelum toko tutup untuk memanfaatkan momen pelanggan paling aktif.",
+  },
+  {
+    icon: "solar:star-bold",
+    tip: "Respons pesanan dalam 10 menit meningkatkan rating toko dan kepercayaan pembeli.",
+  },
+];
+---
+
+<PageLayout
+  title="Panduan Penjual"
+  description="Panduan lengkap untuk mitra LastBite — kelola produk, pesanan, dan keuangan dengan mudah."
+  breadcrumb="Panduan Penjual"
+>
+  <!-- Hero -->
+  <section class="max-w-md md:max-w-6xl mx-auto px-6 py-12">
+    <div class="max-w-2xl">
+      <span
+        class="inline-flex items-center gap-2 bg-lastbite-green/10 text-lastbite-green text-xs font-semibold px-4 py-2 rounded-full mb-4 font-body"
+      >
+        Penjual
+      </span>
+      <h1
+        class="font-heading text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-4"
+      >
+        Panduan <span class="text-lastbite-green">Penjual</span> LastBite
+      </h1>
+      <p class="font-body text-gray-500 text-base leading-relaxed">
+        Semua yang perlu kamu tahu untuk mengelola toko LastBite — dari upload
+        produk hingga pencairan dana.
+      </p>
+    </div>
+  </section>
+
+  <!-- Tips Cepat -->
+  <section class="max-w-md md:max-w-6xl mx-auto px-6 pb-12">
+    <div
+      class="bg-lastbite-green/5 border border-lastbite-green/20 rounded-[2rem] p-6"
+    >
+      <h2
+        class="font-heading font-bold text-gray-900 mb-4 flex items-center gap-2"
+      >
+        <Icon
+          name="solar:lightbulb-bold"
+          class="w-5 h-5 text-lastbite-orange"
+        />
+        Tips Cepat untuk Mitra Baru
+      </h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {
+          tips.map((t) => (
+            <div class="flex gap-3 items-start">
+              <div class="w-8 h-8 rounded-xl bg-lastbite-green/10 text-lastbite-green flex items-center justify-center flex-shrink-0 mt-0.5">
+                <Icon name={t.icon} class="w-4 h-4" />
+              </div>
+              <p class="font-body text-sm text-gray-600 leading-relaxed">
+                {t.tip}
+              </p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Topik Panduan -->
+  <section class="bg-[#F7FBF7] py-16">
+    <div class="max-w-md md:max-w-6xl mx-auto px-6">
+      <h2 class="font-heading text-2xl font-bold text-gray-900 mb-8">
+        Semua Topik Panduan
+      </h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        {
+          topics.map((topic) => (
+            <div class="bg-white rounded-[2rem] p-6 border border-gray-100 shadow-sm hover:shadow-md transition-shadow group">
+              <div class="w-11 h-11 rounded-2xl bg-lastbite-green/10 text-lastbite-green flex items-center justify-center mb-4 group-hover:bg-lastbite-green group-hover:text-white transition-colors">
+                <Icon name={topic.icon} class="w-5 h-5" />
+              </div>
+              <h3 class="font-heading font-bold text-gray-900 mb-3">
+                {topic.title}
+              </h3>
+              <ul class="space-y-2">
+                {topic.items.map((item) => (
+                  <li>
+                    <a
+                      href={`#${topic.slug}`}
+                      class="font-body text-sm text-gray-500 hover:text-lastbite-green transition-colors flex items-center gap-1.5"
+                    >
+                      <Icon
+                        name="solar:arrow-right-linear"
+                        class="w-3 h-3 flex-shrink-0"
+                      />
+                      {item}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Butuh bantuan lebih? -->
+  <section class="max-w-md md:max-w-6xl mx-auto px-6 py-16">
+    <div
+      class="bg-lastbite-darkGreen rounded-[2rem] p-8 md:p-12 flex flex-col md:flex-row items-center gap-6 text-white"
+    >
+      <div class="flex-1">
+        <h2 class="font-heading text-2xl font-bold mb-2">
+          Tidak menemukan jawaban?
+        </h2>
+        <p class="font-body text-green-200 text-sm">
+          Tim support mitra kami siap membantu setiap hari pukul 08.00–21.00
+          WIB.
+        </p>
+      </div>
+      <div class="flex flex-col sm:flex-row gap-3 flex-shrink-0">
+        <a
+          href="https://wa.me/6287863306466?text=Halo%20Tim%20Support%20Mitra%2C%20saya%20butuh%20bantuan.%0ANama%20Mitra%3A%0AKendala%3A"
+          target="_blank"
+          class="inline-flex items-center gap-2 bg-white text-gray-900 font-semibold px-6 py-3 rounded-xl text-sm hover:bg-gray-50 transition-colors"
+        >
+          <Icon
+            name="solar:chat-round-dots-bold"
+            class="w-4 h-4 text-lastbite-green"
+          />
+          Chat WhatsApp
+        </a>
+        <a
+          href="https://www.instagram.com/by_lastbite/"
+          target="_blank"
+          class="inline-flex items-center gap-2 bg-white/10 border border-white/20 text-white font-semibold px-6 py-3 rounded-xl text-sm hover:bg-white/20 transition-colors"
+        >
+          <Icon name="solar:camera-minimalistic-bold" class="w-4 h-4" />
+          DM Instagram
+        </a>
+      </div>
+    </div>
+  </section>
+</PageLayout>

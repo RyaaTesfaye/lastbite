@@ -1,0 +1,93 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import { Icon } from 'astro-icon/components';
+
+const sections = [
+  {
+    title: "Kebijakan Pengembalian Dana (Refund)",
+    items: [
+      { q: "Kondisi yang Memenuhi Syarat Refund", a: "Refund dapat diajukan apabila: (1) produk yang diterima tidak sesuai dengan deskripsi, (2) produk rusak atau tidak layak konsumsi saat diterima, (3) pesanan tidak pernah sampai dalam waktu yang dijanjikan, atau (4) terjadi kesalahan double charging." },
+      { q: "Batas Waktu Pengajuan", a: "Pengajuan refund harus dilakukan maksimal 1×24 jam setelah pesanan dinyatakan selesai. Lewat dari batas waktu tersebut, klaim tidak dapat diproses." },
+      { q: "Cara Mengajukan Refund", a: "Buka aplikasi LastBite → Riwayat Pesanan → pilih pesanan → klik 'Ajukan Komplain' → upload foto bukti → kirim. Tim kami akan merespons dalam 2 hari kerja." },
+      { q: "Proses Pengembalian Dana", a: "Setelah klaim disetujui, dana dikembalikan ke sumber pembayaran asli dalam 3–7 hari kerja. Untuk dompet digital, pengembalian biasanya lebih cepat (1–3 hari kerja)." },
+    ]
+  },
+  {
+    title: "Ketentuan yang Tidak Bisa Di-refund",
+    items: [
+      { q: "Produk yang Tidak Memenuhi Syarat", a: "Refund tidak berlaku untuk: (1) produk yang sudah diambil/diterima dan tidak ada cacat, (2) perubahan selera pembeli, (3) produk yang sudah dibuka dan dikonsumsi sebagian, (4) perbedaan ukuran yang sudah dijelaskan di deskripsi produk." },
+      { q: "Khusus Produk Preloved", a: "Produk preloved dijual dalam kondisi 'apa adanya' sesuai deskripsi penjual. Pastikan membaca deskripsi dan melihat semua foto sebelum membeli. Refund untuk preloved hanya berlaku jika terdapat cacat yang tidak diungkapkan penjual." },
+    ]
+  }
+];
+---
+
+<PageLayout title="Kebijakan Refund" description="Ketahui syarat dan cara mengajukan pengembalian dana di LastBite." breadcrumb="Kebijakan Refund">
+  <section class="max-w-md md:max-w-6xl mx-auto px-6 py-12">
+    <div class="max-w-2xl">
+      <span class="inline-flex items-center gap-2 bg-lastbite-orange/10 text-lastbite-orange text-xs font-semibold px-4 py-2 rounded-full mb-4 font-body">
+        <Icon name="solar:refresh-circle-bold" class="w-4 h-4" /> Kebijakan Pengembalian Dana
+      </span>
+      <h1 class="font-heading text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-4">
+        Kebijakan <span class="text-lastbite-orange">Refund</span>
+      </h1>
+      <p class="font-body text-gray-500 text-base leading-relaxed">
+        Kepuasan kamu adalah prioritas kami. Berikut ketentuan lengkap pengembalian dana di LastBite.
+      </p>
+      <p class="font-body text-xs text-gray-400 mt-3">Terakhir diperbarui: 1 Mei 2026</p>
+    </div>
+  </section>
+
+  <!-- Highlight cards -->
+  <section class="max-w-md md:max-w-6xl mx-auto px-6 pb-12">
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
+      {[
+        { icon: "solar:clock-circle-bold", color: "text-lastbite-green bg-lastbite-green/10", title: "Ajukan dalam 24 Jam", desc: "Setelah pesanan selesai" },
+        { icon: "solar:chat-round-check-bold", color: "text-blue-600 bg-blue-50", title: "Diproses 2 Hari Kerja", desc: "Tim kami siap membantu" },
+        { icon: "solar:wallet-money-bold", color: "text-lastbite-orange bg-lastbite-orange/10", title: "Dana Kembali 3–7 Hari", desc: "Ke sumber pembayaran asli" },
+      ].map(c => (
+        <div class="flex items-center gap-4 p-5 bg-white rounded-[1.5rem] border border-gray-100 shadow-sm">
+          <div class={`w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0 ${c.color}`}>
+            <Icon name={c.icon} class="w-5 h-5" />
+          </div>
+          <div>
+            <p class="font-heading font-bold text-gray-900 text-sm">{c.title}</p>
+            <p class="font-body text-xs text-gray-400">{c.desc}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Detail sections -->
+  <section class="bg-[#F7FBF7] py-12">
+    <div class="max-w-md md:max-w-3xl mx-auto px-6 space-y-10">
+      {sections.map(sec => (
+        <div>
+          <h2 class="font-heading text-xl font-bold text-gray-900 mb-5">{sec.title}</h2>
+          <div class="space-y-4">
+            {sec.items.map(item => (
+              <div class="bg-white rounded-2xl p-6 border border-gray-100">
+                <h3 class="font-heading font-bold text-gray-800 text-sm mb-2 flex items-center gap-2">
+                  <Icon name="solar:info-circle-bold" class="w-4 h-4 text-lastbite-green flex-shrink-0" />
+                  {item.q}
+                </h3>
+                <p class="font-body text-sm text-gray-500 leading-relaxed pl-6">{item.a}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Hubungi -->
+  <section class="max-w-md md:max-w-6xl mx-auto px-6 py-16 text-center">
+    <h2 class="font-heading text-2xl font-bold text-gray-900 mb-2">Masih ada pertanyaan?</h2>
+    <p class="font-body text-gray-500 text-sm mb-6">Tim support LastBite siap membantu kamu setiap hari.</p>
+    <a href="/tentang/hubungi-kami" class="inline-flex items-center gap-2 bg-lastbite-green text-white font-semibold px-6 py-3.5 rounded-2xl hover:bg-green-700 transition-colors text-sm">
+      <Icon name="solar:chat-round-dots-bold" class="w-4 h-4" />
+      Hubungi Kami
+    </a>
+  </section>
+</PageLayout>

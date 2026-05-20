@@ -1,0 +1,120 @@
+---
+import { Icon } from 'astro-icon/components';
+
+const stepsPembeli = [
+  { icon: "solar:download-square-bold", title: "Dapatkan Aplikasi", desc: "Unduh LastBite secara gratis dan buat akun dalam hitungan menit untuk mulai berhemat." },
+  { icon: "solar:map-point-search-bold", title: "Temukan Deal Dekat", desc: "Jelajahi ratusan produk surplus & preloved dari toko sekitar lokasi kamu di Jember." },
+  { icon: "solar:cart-check-bold", title: "Pesan & Bayar", desc: "Pilih produk, bayar lewat berbagai metode pembayaran, lalu ambil di toko atau tunggu diantar." },
+  { icon: "solar:leaf-bold", title: "Hemat & Berkontribusi", desc: "Nikmati produk berkualitas dengan harga miring sekaligus ikut mengurangi food waste!" },
+];
+
+const stepsPenjual = [
+  { icon: "solar:user-plus-bold", title: "Daftar Jadi Mitra", desc: "Isi formulir mitra online untuk langsung mendaftar dan mulai berjualan." },
+  { icon: "solar:box-bold", title: "Upload Produk Surplus", desc: "Foto, deskripsikan, dan tetapkan harga diskon untuk stok berlebih atau produk mendekati expiry." },
+  { icon: "solar:bell-bing-bold", title: "Terima Order Masuk", desc: "Notifikasi real-time setiap ada pembeli yang memesan. Konfirmasi dan siapkan pesanan." },
+  { icon: "solar:dollar-bold", title: "Dapatkan Penghasilan", desc: "Dana masuk otomatis ke rekening mitra setelah transaksi selesai. Pantau via dashboard." },
+];
+---
+
+<section class="py-20 bg-white">
+  <div class="max-w-md md:max-w-6xl mx-auto px-6">
+    <div class="text-center mb-12">
+      <h2 class="font-heading text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+        Cara Kerja <span class="text-lastbite-green">LastBite</span>
+      </h2>
+      <p class="font-body text-gray-500 text-sm md:text-base max-w-xl mx-auto">
+        Sederhana, cepat, dan menguntungkan semua pihak — baik pembeli maupun penjual.
+      </p>
+    </div>
+
+    <!-- Tab Toggle -->
+    <div class="flex justify-center mb-12">
+      <div class="bg-gray-100 p-1 rounded-2xl flex gap-1 font-body">
+        <button
+          id="tab-pembeli"
+          class="how-tab active-tab px-6 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200"
+          data-target="steps-pembeli"
+        >
+          Pembeli
+        </button>
+        <button
+          id="tab-penjual"
+          class="how-tab px-6 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 text-gray-500"
+          data-target="steps-penjual"
+        >
+          Penjual
+        </button>
+      </div>
+    </div>
+
+    <!-- Steps Pembeli -->
+    <div id="steps-pembeli" class="how-steps grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+      {stepsPembeli.map((s, i) => (
+        <div class="flex flex-col items-start gap-4 p-6 rounded-[2rem] bg-[#F7FBF7] border border-green-100 relative">
+          <span class="absolute top-4 right-5 font-heading font-bold text-5xl text-gray-100 select-none leading-none">{i + 1}</span>
+          <div class="w-12 h-12 rounded-2xl bg-lastbite-green/10 text-lastbite-green flex items-center justify-center flex-shrink-0">
+            <Icon name={s.icon} class="w-6 h-6" />
+          </div>
+          <div>
+            <h3 class="font-heading font-bold text-gray-900 mb-1">{s.title}</h3>
+            <p class="font-body text-xs text-gray-500 leading-relaxed">{s.desc}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Steps Penjual -->
+    <div id="steps-penjual" class="how-steps hidden grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+      {stepsPenjual.map((s, i) => (
+        <div class="flex flex-col items-start gap-4 p-6 rounded-[2rem] bg-[#F5F8F2] border border-green-100 relative">
+          <span class="absolute top-4 right-5 font-heading font-bold text-5xl text-gray-100 select-none leading-none">{i + 1}</span>
+          <div class="w-12 h-12 rounded-2xl bg-lastbite-orange/10 text-lastbite-orange flex items-center justify-center flex-shrink-0">
+            <Icon name={s.icon} class="w-6 h-6" />
+          </div>
+          <div>
+            <h3 class="font-heading font-bold text-gray-900 mb-1">{s.title}</h3>
+            <p class="font-body text-xs text-gray-500 leading-relaxed">{s.desc}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .active-tab {
+    background: white;
+    color: #2B5219;
+    box-shadow: 0 1px 8px rgba(0,0,0,0.08);
+  }
+</style>
+
+<script>
+  const tabs = document.querySelectorAll<HTMLButtonElement>('.how-tab');
+  const stepSections = document.querySelectorAll<HTMLElement>('.how-steps');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const targetId = tab.dataset.target!;
+
+      // Reset tabs
+      tabs.forEach(t => {
+        t.classList.remove('active-tab');
+        t.classList.add('text-gray-500');
+      });
+      tab.classList.add('active-tab');
+      tab.classList.remove('text-gray-500');
+
+      // Show/hide step panels
+      stepSections.forEach(panel => {
+        if (panel.id === targetId) {
+          panel.classList.remove('hidden');
+          panel.classList.add('grid');
+        } else {
+          panel.classList.add('hidden');
+          panel.classList.remove('grid');
+        }
+      });
+    });
+  });
+</script>

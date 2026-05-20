@@ -1,0 +1,30 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import { Icon } from 'astro-icon/components';
+---
+
+<PageLayout title="Dapatkan Aplikasi" description="Download aplikasi LastBite gratis di App Store dan Google Play." breadcrumb="Dapatkan Aplikasi">
+  <section class="max-w-md md:max-w-6xl mx-auto px-6 py-16 text-center">
+    <div class="max-w-xl mx-auto">
+      <div class="w-20 h-20 bg-lastbite-green rounded-[1.5rem] flex items-center justify-center text-white mx-auto mb-6 shadow-lg">
+        <Icon name="solar:leaf-bold" class="w-10 h-10" />
+      </div>
+      <h1 class="font-heading text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+        Dapatkan <span class="text-lastbite-green">Aplikasi</span>
+      </h1>
+      <div class="flex justify-center mb-12">
+        <a href="#" class="group inline-flex items-center gap-3 bg-lastbite-green text-white px-10 py-4 rounded-2xl font-heading font-bold text-lg shadow-lg shadow-green-200 hover:bg-green-700 hover:shadow-xl hover:shadow-green-300 hover:-translate-y-0.5 transition-all duration-300">
+          <Icon name="solar:download-minimalistic-bold" class="w-6 h-6 group-hover:animate-bounce" />
+          Unduh
+        </a>
+      </div>
+
+      <div class="max-w-xs mx-auto">
+        <div class="flex items-center justify-center gap-3 p-4 bg-[#F7FBF7] rounded-2xl border border-green-100">
+          <Icon name="solar:shield-check-bold" class="w-5 h-5 text-lastbite-green flex-shrink-0" />
+          <p class="font-body text-xs text-gray-600">Aman, ringan, dan bebas iklan</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</PageLayout>

@@ -1,0 +1,42 @@
+---
+import '../styles/global.css';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  breadcrumb?: string;
+}
+
+const { title, description = '', breadcrumb = '' } = Astro.props;
+---
+
+<html lang="id" class="scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title} — LastBite</title>
+    {description && <meta name="description" content={description} />}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,500;9..40,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  </head>
+  <body class="bg-lastbite-bg font-body text-gray-800 antialiased">
+    <Navbar />
+
+    <!-- Breadcrumb -->
+    <div class="max-w-md md:max-w-6xl mx-auto px-6 pt-4 pb-0">
+      <p class="text-xs text-gray-400 font-body">
+        <a href="/" class="hover:text-lastbite-green transition-colors">Beranda</a>
+        {breadcrumb && <><span class="mx-2">›</span><span class="text-gray-600">{breadcrumb}</span></>}
+      </p>
+    </div>
+
+    <main class="min-h-screen">
+      <slot />
+    </main>
+
+    <Footer />
+  </body>
+</html>

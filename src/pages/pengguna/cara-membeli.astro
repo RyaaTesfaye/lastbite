@@ -1,0 +1,131 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import { Icon } from 'astro-icon/components';
+
+const steps = [
+  {
+    no: "01",
+    icon: "solar:download-square-bold",
+    title: "Dapatkan Aplikasi LastBite",
+    desc: "Unduh aplikasi LastBite secara gratis. Aplikasi tersedia untuk semua pengguna dan siap digunakan dalam hitungan detik.",
+  },
+  {
+    no: "02",
+    icon: "solar:user-plus-bold",
+    title: "Buat Akun dalam 1 Menit",
+    desc: "Daftar dengan memasukkan nama lengkap, email, password, dan nomor HP kamu. Akunmu akan langsung aktif.",
+  },
+  {
+    no: "03",
+    icon: "solar:map-point-search-bold",
+    title: "Temukan Deal di Sekitarmu",
+    desc: "Aktifkan lokasi untuk menemukan produk surplus, makanan, dan barang preloved dari toko-toko terdekat di area Jember.",
+  },
+  {
+    no: "04",
+    icon: "solar:cart-check-bold",
+    title: "Pilih Produk & Tambah ke Keranjang",
+    desc: "Pilih produk yang kamu inginkan, lihat detail stok tersisa, harga asli vs harga LastBite, dan ulasan pembeli lain.",
+  },
+  {
+    no: "05",
+    icon: "solar:wallet-bold",
+    title: "Checkout & Bayar",
+    desc: "Pilih metode pembayaran favoritmu: transfer bank atau QRIS.",
+  },
+  {
+    no: "06",
+    icon: "solar:bag-check-bold",
+    title: "Ambil atau Terima Pesanan",
+    desc: "Pilih antara pickup langsung di toko atau tunggu kurir mengantarkan pesanan ke lokasi kamu. Selesai — hemat dan puas!",
+  },
+];
+
+const faqs = [
+  { q: "Apakah produk di LastBite aman untuk dikonsumsi?", a: "Ya, semua produk food yang dijual di LastBite masih dalam masa berlaku (belum kadaluarsa). Penjual wajib mencantumkan tanggal produksi dan masa berlaku pada setiap listing." },
+  { q: "Bagaimana jika pesanan saya tidak sesuai?", a: "Kamu bisa mengajukan komplain melalui menu 'Bantuan' di aplikasi dalam 1x24 jam setelah menerima pesanan. Tim kami akan memproses dalam 2 hari kerja." },
+  { q: "Apakah bisa request delivery ke alamat saya?", a: "Bisa! LastBite bekerja sama dengan layanan kurir lokal untuk pengiriman same-day di area Jember. Biaya ongkos kirim dihitung berdasarkan jarak." },
+  { q: "Berapa minimum pembelian di LastBite?", a: "Tidak ada minimum pembelian. Kamu bisa beli satu item saja tanpa syarat minimum order." },
+];
+---
+
+<PageLayout title="Cara Membeli" description="Panduan lengkap cara membeli di LastBite — dari download aplikasi sampai terima pesanan." breadcrumb="Cara Membeli">
+  <!-- Hero -->
+  <section class="max-w-md md:max-w-6xl mx-auto px-6 py-12">
+    <div class="max-w-2xl">
+      <span class="inline-flex items-center gap-2 bg-lastbite-green/10 text-lastbite-green text-xs font-semibold px-4 py-2 rounded-full mb-4 font-body">
+        Pembeli
+      </span>
+      <h1 class="font-heading text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-4">
+        Cara Membeli di <span class="text-lastbite-green">LastBite</span>
+      </h1>
+      <p class="font-body text-gray-500 text-base leading-relaxed">
+        Ikuti 6 langkah mudah ini untuk mulai berhemat dan berkontribusi mengurangi food waste di Jember.
+      </p>
+    </div>
+  </section>
+
+  <!-- Steps -->
+  <section class="max-w-md md:max-w-6xl mx-auto px-6 pb-16">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {steps.map(s => (
+        <div class="flex gap-5 p-6 bg-white rounded-[2rem] border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+          <div class="flex-shrink-0">
+            <div class="w-12 h-12 rounded-2xl bg-lastbite-green/10 text-lastbite-green flex items-center justify-center">
+              <Icon name={s.icon} class="w-6 h-6" />
+            </div>
+          </div>
+          <div>
+            <span class="text-[10px] font-bold text-lastbite-green font-body tracking-widest">LANGKAH {s.no}</span>
+            <h2 class="font-heading font-bold text-gray-900 mt-1 mb-2">{s.title}</h2>
+            <p class="font-body text-sm text-gray-500 leading-relaxed">{s.desc}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="bg-[#F7FBF7] py-16">
+    <div class="max-w-md md:max-w-3xl mx-auto px-6">
+      <h2 class="font-heading text-3xl font-bold text-gray-900 mb-8 text-center">Pertanyaan Umum</h2>
+      <div class="space-y-4" id="faq-list">
+        {faqs.map((faq, i) => (
+          <div class="faq-item bg-white rounded-2xl border border-gray-100 overflow-hidden">
+            <button
+              class="faq-btn w-full flex justify-between items-center px-6 py-5 text-left font-body font-semibold text-gray-800 text-sm"
+              data-index={i}
+            >
+              {faq.q}
+              <Icon name="solar:alt-arrow-down-linear" class="w-5 h-5 text-gray-400 flex-shrink-0 ml-4 faq-chevron transition-transform duration-200" />
+            </button>
+            <div class="faq-answer hidden px-6 pb-5">
+              <p class="font-body text-sm text-gray-500 leading-relaxed">{faq.a}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+
+</PageLayout>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('.faq-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const answer  = btn.nextElementSibling as HTMLElement;
+      const chevron = btn.querySelector('.faq-chevron') as HTMLElement;
+      const isOpen  = !answer.classList.contains('hidden');
+
+      // Close all
+      document.querySelectorAll('.faq-answer').forEach(a => a.classList.add('hidden'));
+      document.querySelectorAll('.faq-chevron').forEach(c => c.classList.remove('rotate-180'));
+
+      if (!isOpen) {
+        answer.classList.remove('hidden');
+        chevron.classList.add('rotate-180');
+      }
+    });
+  });
+</script>

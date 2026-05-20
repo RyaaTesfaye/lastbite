@@ -1,0 +1,128 @@
+---
+import { Icon } from 'astro-icon/components';
+
+const testimonials = [
+  {
+    name: "Dewi Rahayu",
+    role: "Mahasiswa Unej",
+    avatar: "DR",
+    color: "bg-lastbite-orange",
+    rating: 5,
+    text: "Beneran game changer! Aku bisa makan siang enak di bawah 20 ribu tiap hari. Toko-tokonya deket kampus semua. Udah pakai LastBite 2 bulan dan nggak nyesel sama sekali.",
+  },
+  {
+    name: "Budi Santoso",
+    role: "Pemilik Roti Jember",
+    avatar: "BS",
+    color: "bg-lastbite-green",
+    rating: 5,
+    text: "Dulu sering rugi karena roti sisa nggak laku. Sejak gabung LastBite, sisa roti habis terjual sebelum jam 9 malam! Revenue tambahan per bulan bisa sampai 2 juta lebih.",
+  },
+  {
+    name: "Sari Melati",
+    role: "Ibu Rumah Tangga",
+    avatar: "SM",
+    color: "bg-purple-500",
+    rating: 5,
+    text: "Suka banget sama konsepnya! Hemat belanja sekaligus bantu lingkungan. Anak-anak juga senang karena sering dapat camilan enak dengan harga murah.",
+  },
+  {
+    name: "Rizky Firmansyah",
+    role: "Karyawan Swasta",
+    avatar: "RF",
+    color: "bg-blue-500",
+    rating: 4,
+    text: "Aplikasinya simpel dan gampang dipake. Fitur notifikasi deal baru itu yang paling aku suka — langsung dikabarin kalau ada promo dari toko favorit.",
+  },
+  {
+    name: "Lilis Handayani",
+    role: "Pengelola Café",
+    avatar: "LH",
+    color: "bg-pink-500",
+    rating: 5,
+    text: "Bergabung jadi mitra LastBite adalah salah satu keputusan terbaik untuk bisnis kami. Customer baru terus datang dan food waste di dapur turun drastis. Highly recommended!",
+  },
+];
+---
+
+<section class="py-20 bg-white overflow-hidden">
+  <div class="max-w-md md:max-w-6xl mx-auto px-6">
+    <div class="text-center mb-12">
+      <h2 class="font-heading text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+        Mereka Sudah <span class="text-lastbite-green">Merasakannya</span>
+      </h2>
+      <p class="font-body text-gray-500 text-sm">Ribuan pengguna dan mitra di Jember sudah merasakan manfaat LastBite.</p>
+    </div>
+
+    <!-- Marquee Row 1 (left to right) -->
+    <div class="relative overflow-hidden mb-5">
+      <div class="marquee-track flex gap-5" id="marquee-1">
+        {[...testimonials, ...testimonials].map((t, i) => (
+          <div class="testimonial-card flex-shrink-0 w-[320px] bg-[#F7FBF7] border border-gray-100 rounded-[2rem] p-6 flex flex-col gap-4">
+            <div class="flex gap-1">
+              {Array.from({ length: 5 }).map((_, si) => (
+                <Icon
+                  name={si < t.rating ? "solar:star-bold" : "solar:star-line-duotone"}
+                  class={`w-4 h-4 ${si < t.rating ? 'text-yellow-400' : 'text-gray-300'}`}
+                />
+              ))}
+            </div>
+            <p class="font-body text-sm text-gray-600 leading-relaxed line-clamp-4">"{t.text}"</p>
+            <div class="flex items-center gap-3 mt-auto">
+              <div class={`w-10 h-10 rounded-full ${t.color} text-white flex items-center justify-center font-bold text-sm flex-shrink-0`}>
+                {t.avatar}
+              </div>
+              <div>
+                <p class="font-heading font-bold text-gray-900 text-sm">{t.name}</p>
+                <p class="font-body text-xs text-gray-400">{t.role}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Marquee Row 2 (right to left) -->
+    <div class="relative overflow-hidden">
+      <div class="marquee-track-reverse flex gap-5" id="marquee-2">
+        {[...testimonials.slice().reverse(), ...testimonials.slice().reverse()].map((t, i) => (
+          <div class="testimonial-card flex-shrink-0 w-[320px] bg-[#F5F8F2] border border-green-100 rounded-[2rem] p-6 flex flex-col gap-4">
+            <div class="flex gap-1">
+              {Array.from({ length: 5 }).map((_, si) => (
+                <Icon
+                  name={si < t.rating ? "solar:star-bold" : "solar:star-line-duotone"}
+                  class={`w-4 h-4 ${si < t.rating ? 'text-yellow-400' : 'text-gray-300'}`}
+                />
+              ))}
+            </div>
+            <p class="font-body text-sm text-gray-600 leading-relaxed line-clamp-4">"{t.text}"</p>
+            <div class="flex items-center gap-3 mt-auto">
+              <div class={`w-10 h-10 rounded-full ${t.color} text-white flex items-center justify-center font-bold text-sm flex-shrink-0`}>
+                {t.avatar}
+              </div>
+              <div>
+                <p class="font-heading font-bold text-gray-900 text-sm">{t.name}</p>
+                <p class="font-body text-xs text-gray-400">{t.role}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes marquee {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  @keyframes marquee-reverse {
+    0%   { transform: translateX(-50%); }
+    100% { transform: translateX(0); }
+  }
+  .marquee-track         { animation: marquee 30s linear infinite; }
+  .marquee-track-reverse { animation: marquee-reverse 28s linear infinite; }
+  .marquee-track:hover,
+  .marquee-track-reverse:hover { animation-play-state: paused; }
+</style>

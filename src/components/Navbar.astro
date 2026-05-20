@@ -7,10 +7,9 @@ const menuItems = [
     title: "Untuk Pengguna",
     bold: "Pengguna",
     links: [
-      { name: "Dapatkan Aplikasi", href: "#" },
-      { name: "Cari Diskon", href: "#" },
-      { name: "Cara Membeli", href: "#" },
-      { name: "Kebijakan Refund", href: "#" }
+      { name: "Dapatkan Aplikasi", href: "/pengguna/dapatkan-aplikasi" },
+      { name: "Cara Membeli",      href: "/pengguna/cara-membeli" },
+      { name: "Kebijakan Refund",  href: "/pengguna/kebijakan-refund" },
     ]
   },
   {
@@ -18,10 +17,9 @@ const menuItems = [
     title: "Untuk Mitra",
     bold: "Mitra",
     links: [
-      { name: "Jadi Penjual", href: "#" },
-      { name: "Panduan Penjual", href: "#" },
-      { name: "Cerita Sukses", href: "#" },
-      { name: "Login Mitra", href: "#" }
+      { name: "Jadi Penjual",     href: "/mitra/jadi-penjual" },
+      { name: "Panduan Penjual",  href: "/mitra/panduan-penjual" },
+
     ]
   },
   {
@@ -29,9 +27,9 @@ const menuItems = [
     title: "Tentang LastBite",
     bold: "LastBite",
     links: [
-      { name: "Tentang LastBite", href: "#" },
-      { name: "Hubungi Kami", href: "#" },
-      { name: "Kebijakan Privasi", href: "#" }
+      { name: "Tentang LastBite",    href: "/tentang/tentang-lastbite" },
+      { name: "Hubungi Kami",        href: "/tentang/hubungi-kami" },
+      { name: "Kebijakan Privasi",   href: "/tentang/kebijakan-privasi" },
     ]
   }
 ];
@@ -39,11 +37,8 @@ const menuItems = [
 
 <header class="relative z-50">
   <nav class="flex items-center justify-between py-6 px-6 max-w-md md:max-w-6xl mx-auto">
-    <a href="/" class="flex items-center gap-2 relative z-50 hover:opacity-80 transition-opacity">
-      <div class="w-10 h-10 bg-lastbite-green rounded-full flex items-center justify-center text-white shadow-md">
-        <Icon name="solar:leaf-bold" class="w-6 h-6" />
-      </div>
-      <span class="font-heading font-bold text-3xl tracking-tight text-gray-900">LastBite</span>
+    <a href="/" class="relative z-50 hover:opacity-80 transition-opacity">
+      <img src="/logo.png" alt="LastBite Logo" class="h-20 md:h-24 w-auto" />
     </a>
 
     <button id="hamburger-btn" class="md:hidden relative z-50 p-2 -mr-2 text-gray-900" aria-label="Buka Menu">

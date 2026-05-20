@@ -1,0 +1,76 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import { Icon } from 'astro-icon/components';
+
+const steps = [
+  { no: "01", icon: "solar:document-add-bold", title: "Daftar Jadi Mitra", desc: "Daftar langsung melalui dashboard toko. Isi detail identitas usaha seperti nama usaha, kategori bisnis, lokasi, dan nama kantor." },
+  { no: "02", icon: "solar:box-bold", title: "Upload Produk Surplus", desc: "Tambahkan produk kamu: foto menarik, deskripsi jelas, harga asli, harga LastBite (diskon min 50%), stok, dan masa berlaku." },
+  { no: "03", icon: "solar:settings-bold", title: "Atur Jadwal & Stok", desc: "Tentukan jam operasional toko, window waktu pickup, dan batas stok harian. Produk akan otomatis tersembunyi jika stok habis." },
+  { no: "04", icon: "solar:bell-bing-bold", title: "Terima & Konfirmasi Order", desc: "Dapatkan notifikasi real-time setiap ada pesanan masuk. Konfirmasi dalam 15 menit, siapkan pesanan, dan tandai siap diambil." },
+  { no: "05", icon: "solar:star-bold", title: "Bangun Reputasi Toko", desc: "Pembeli akan memberikan rating dan ulasan. Semakin baik rating kamu, semakin tinggi produkmu muncul di rekomendasi aplikasi." },
+  { no: "06", icon: "solar:dollar-bold", title: "Cairkan Penghasilan", desc: "Dana masuk ke saldo LastBite Merchant setiap transaksi selesai. Cairkan ke rekening bank kapan saja, minimum Rp 20.000." },
+];
+
+const perks = [
+  { icon: "solar:users-group-rounded-bold", title: "Jangkauan Lebih Luas", desc: "Raih ribuan pelanggan aktif di Jember yang secara aktif mencari promo dan produk surplus setiap harinya." },
+  { icon: "solar:chart-bold", title: "Dashboard Analitik", desc: "Pantau performa penjualan, produk terlaris, jam paling ramai, dan potensi pendapatan lewat dashboard mitra." },
+  { icon: "solar:shield-check-bold", title: "Proteksi Pembayaran", desc: "Dana masuk aman terlindungi. Kami hanya cairkan setelah transaksi dikonfirmasi kedua pihak." },
+  { icon: "solar:headphones-round-bold", title: "Dukungan Dedikasi", desc: "Tim mitra support tersedia setiap hari untuk membantu onboarding, masalah teknis, atau pertanyaan lainnya." },
+];
+---
+
+<PageLayout title="Jadi Penjual" description="Bergabung sebagai mitra LastBite dan mulai monetisasi stok berlebih kamu." breadcrumb="Jadi Penjual">
+  <!-- Hero -->
+  <section class="max-w-md md:max-w-3xl mx-auto px-6 py-12 text-center">
+    <span class="inline-flex items-center gap-2 bg-lastbite-green/10 text-lastbite-green text-xs font-semibold px-4 py-2 rounded-full mb-4 font-body">
+      <Icon name="solar:shop-bold" class="w-4 h-4" /> Untuk Pemilik Usaha
+    </span>
+    <h1 class="font-heading text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-4">
+      Ubah Stok Berlebih<br/>Jadi <span class="text-lastbite-green">Penghasilan</span>
+    </h1>
+    <p class="font-body text-gray-500 text-base leading-relaxed">
+      Jangan biarkan surplus food dan produk berlebih jadi rugi. Bergabung dengan mitra LastBite di Jember dan mulai jual dalam hitungan jam.
+    </p>
+  </section>
+
+  <!-- Keuntungan -->
+  <section class="bg-[#F7FBF7] py-16">
+    <div class="max-w-md md:max-w-6xl mx-auto px-6">
+      <h2 class="font-heading text-3xl font-bold text-gray-900 mb-8 text-center">Kenapa Jadi Mitra LastBite?</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+        {perks.map(p => (
+          <div class="bg-white rounded-[2rem] p-6 border border-gray-100 shadow-sm">
+            <div class="w-12 h-12 rounded-2xl bg-lastbite-green/10 text-lastbite-green flex items-center justify-center mb-4">
+              <Icon name={p.icon} class="w-6 h-6" />
+            </div>
+            <h3 class="font-heading font-bold text-gray-900 mb-2">{p.title}</h3>
+            <p class="font-body text-xs text-gray-500 leading-relaxed">{p.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Steps -->
+  <section class="max-w-md md:max-w-6xl mx-auto px-6 py-16">
+    <h2 class="font-heading text-3xl font-bold text-gray-900 mb-8 text-center">Cara Bergabung Sebagai Mitra</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {steps.map(s => (
+        <div class="flex gap-5 p-6 bg-white rounded-[2rem] border border-gray-100 shadow-sm">
+          <div class="flex-shrink-0">
+            <div class="w-12 h-12 rounded-2xl bg-lastbite-orange/10 text-lastbite-orange flex items-center justify-center">
+              <Icon name={s.icon} class="w-6 h-6" />
+            </div>
+          </div>
+          <div>
+            <span class="text-[10px] font-bold text-lastbite-orange font-body tracking-widest">LANGKAH {s.no}</span>
+            <h3 class="font-heading font-bold text-gray-900 mt-1 mb-2">{s.title}</h3>
+            <p class="font-body text-sm text-gray-500 leading-relaxed">{s.desc}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+
+</PageLayout>
